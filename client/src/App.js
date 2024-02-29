@@ -83,6 +83,7 @@ useEffect(()=>{
         <Route path="/coupan/add" element={<AddCoupan/>}></Route>
         <Route path="/editcategory/:id" element={<EditCategory/>}></Route>
         <Route path="/editproduct/:id" element={<EditProduct/>}></Route>
+        <Route path="/aboutus" element={<AboutUs />}></Route>
 
         <Route path="/editcoupan/:id" element={<EditCoupan/>}></Route>
         <Route path="/productDetail/:id" element={<ProductsDetailDefault/>}></Route>
