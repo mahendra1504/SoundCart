@@ -99,7 +99,7 @@ const Checkout = () => {
     const addOnlineOrder = async() =>{
         
         console.log(id);
-        const key ="rzp_test_fevusASlnlsXF6"
+        const key ="rzp_test_5C6o0H4IRLCUBT"
         
         const token = localStorage.getItem("usersdatatoken")
         const res = await fetch(`/checkout/${id}`,{
@@ -128,7 +128,7 @@ const Checkout = () => {
             key: key, 
             amount: data?.order?.amount, 
             currency: "INR",
-            name: "Aavaaj",
+            name: "SoundCart",
             description: "Razorpay Transaction",
             order_id: orderid, 
             
