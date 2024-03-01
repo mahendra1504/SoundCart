@@ -56,10 +56,10 @@ const Home = () => {
   return (
     <>
      <AdminHeader/>
-     <button onClick={addCoupan}>Add Coupan</button>
-     <input type="search" class="form-control" id="datatable-search-input" placeholder='Enter to search' onChange={(e)=>setSearch(e.target.value)} style={{marginBottom:"2rem",maxWidth:"30rem",marginTop:"1rem"}}/>
+     <button style={{borderRadius: "5px", marginTop: "10px", padding: "5px", position: "absolute", right: "70px", border: "3px solid green"}} className='btn-success' onClick={addCoupan}>Add Coupon</button>
+     <input type="search" class="form-control" id="datatable-search-input" placeholder='Search Coupons' onChange={(e)=>setSearch(e.target.value)} style={{marginBottom:"2rem",maxWidth:"30rem",marginTop:"1rem"}}/>
 
-     <div style={{ width: "30rem" }}>
+     <div style={{ width: "80rem" }}>
 
         {
           list.length === 0 ? 
@@ -69,7 +69,7 @@ const Home = () => {
           :
           <>
           <Table striped bordered hover size="sm">
-          <thead>
+          <thead  style={{textAlign: "center"}}>
             <tr>
               <th>#</th>
               <th>Coupan Name</th>
@@ -82,11 +82,11 @@ const Home = () => {
             {
               list.map((item, index) => {
                 return (
-                  <tr>
+                  <tr  style={{ textAlign: "center" }}>
                     <td>{index + 1}</td>
-                    <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{item.coupanName}</div></td>
-                    <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{item.coupanDiscount}</div></td>
-                    <td style={{textAlign:"center"}}>
+                    <td><div style={{ marginTop: "2rem" }}>{item.coupanName}</div></td>
+                    <td><div style={{ marginTop: "2rem" }}>{item.coupanDiscount}</div></td>
+                    <td>
 
 
                       <div style={{marginTop:"2rem"}}>

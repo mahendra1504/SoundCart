@@ -25,12 +25,12 @@ const Home = () => {
     setAnchorEl(null);
   };
 
-  const addcategory = () => {
-    navigate("/category/add")
+  const addbrand = () => {
+    navigate("/brand/add")
   }
 
-  const getcategory = async () => {
-    const res = await fetch(`/getcategory/?search=${search}`, {
+  const getbrand = async () => {
+    const res = await fetch(`/getbrand/?search=${search}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -45,10 +45,10 @@ const Home = () => {
       //console.log(data);
     }
   }
-  const deletcategory = async (id) => {
+  const deletebrand = async (id) => {
 
     console.log(id);
-    const res2 = await fetch(`/deletecategoty/${id}`, {
+    const res2 = await fetch(`/deletebrand/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -62,21 +62,21 @@ const Home = () => {
     if (res2.status === 422 || !deletedata) {
       console.log("error");
     } else {
-      console.log("category deleted");
-      getcategory();
+      console.log("brand deleted");
+      getbrand();
     }
 
   }
 
   useEffect(() => {
-    getcategory()
+    getbrand()
   },[search])
   return (
     
     <>
       <AdminHeader></AdminHeader> 
-      <button style={{borderRadius: "5px", marginTop: "10px", padding: "5px", position: "absolute", right: "70px", border: "3px solid green"}} className='btn-success' onClick={addcategory}>Add Category</button>
-      <input type="search" class="form-control" id="datatable-search-input" placeholder='Search Category  ' onChange={(e)=>setSearch(e.target.value)} style={{marginBottom:"2rem",maxWidth:"30rem",marginTop:"1rem"}}/>
+      <button style={{borderRadius: "5px", marginTop: "10px", padding: "5px", position: "absolute", right: "70px", border: "3px solid green"}} className='btn-success' onClick={addbrand}>Add Brand</button>
+      <input type="search" class="form-control" id="datatable-search-input" placeholder='Search Brand' onChange={(e)=>setSearch(e.target.value)} style={{marginBottom:"2rem",maxWidth:"30rem",marginTop:"1rem"}}/>
       <div style={{ width: "80rem"}}>
        {
 
@@ -88,8 +88,8 @@ const Home = () => {
           <thead style={{textAlign: "center"}}>
             <tr>
               <th>#</th>
-              <th>Category Icon</th>
-              <th>Category Name</th>
+              <th>Brand Icon</th>
+              <th>Brand Name</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -101,15 +101,15 @@ const Home = () => {
                   <tr style={{ textAlign: "center" }}>
                     <td>{index + 1}</td>
                     <td><img variant="top" style={{ width: "100px", textAlign: "center", margin: "auto", height: "100px" }} src={`/uploads/${item.imgpath}`} className='mt-2' /></td>
-                    <td ><div style={{ marginTop: "2rem" }}>{item.catName}</div></td>
+                    <td ><div style={{ marginTop: "2rem" }}>{item.brandName}</div></td>
                     <td>
 
 
                       <div style={{marginTop:"2rem"}}>
                       <DropdownButton id="dropdown" title={<MoreHorizIcon />}>
                         
-                        <Dropdown.Item as="button"><NavLink to={`/editcategory/${item._id}`}>Edit</NavLink></Dropdown.Item>
-                        <Dropdown.Item as="button"><NavLink onClick={() => deletcategory(item._id)} >Delete</NavLink></Dropdown.Item>
+                        <Dropdown.Item as="button"><NavLink to={`/editbrand/${item._id}`}>Edit</NavLink></Dropdown.Item>
+                        <Dropdown.Item as="button"><NavLink onClick={() => deletebrand(item._id)} >Delete</NavLink></Dropdown.Item>
                         
                       </DropdownButton>
                       </div>

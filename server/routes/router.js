@@ -6,7 +6,8 @@ const bcrypt = require("bcryptjs")
 const { roles } = require("../middleware/constraints")
 const authenticate = require("../middleware/authenticate");
 const userotpdb = require("../models/userOtp");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
+const branddb = require("../models/brandSchema");
 const categorydb = require("../models/categorySchema");
 const productdb = require("../models/productSchema");
 const multer = require("multer");
@@ -330,6 +331,32 @@ router.post("/addcategory", upload.single("photo"), async (req, res) => {
         res.status(422).json(error)
     }
 })
+
+router.post("/addbrand", upload.single("photo"), async (req, res) => {
+    const { filename } = req.file;
+
+    const { brandName } = req.body
+    console.log("000", req.file);
+    console.log(brandName);
+
+    if (!brandName) {
+        res.status(422).json("Plz Fill Brand name")
+    }
+
+    try {
+        const addBrand = new branddb({
+            brandName: brandName,
+            imgpath: filename
+        })
+
+        const finaldata = await addBrand.save();
+        res.status(201).json({ status: 201, finaldata });
+        console.log("Brand Added Successfully");
+    } catch (error) {
+        res.status(422).json(error)
+    }
+})
+
 router.post("/addproduct", upload.single("photo"), async (req, res) => {
     const { product_name, selling_price, actual_price, discount, description, product_category, countInStock, isFeatured, isActive } = req.body;
     const { filename } = req.file;
@@ -358,6 +385,21 @@ router.post("/addproduct", upload.single("photo"), async (req, res) => {
         res.status(422).json(error);
     }
 })
+
+router.get("/getbrand", async (req, res) => {
+    const search = req.query.search || ""
+
+    const query = {
+        brandName: { $regex: search, $options: "i" }
+    }
+    try {
+        const brand = await branddb.find(query);
+        res.status(201).json(brand)
+    } catch (error) {
+        res.status(422).json(error)
+    }
+})
+
 router.get("/getcategory", async (req, res) => {
     const search = req.query.search || ""
 
@@ -388,7 +430,7 @@ router.get("/getproduct", async (req, res) => {
         query.isFeatured = isfeatured
     }
     try {
-        const products = await productdb.find(query).populate('product_category');
+        const products = await productdb.find(query).populate('product_category product_brand');
         res.status(201).json(products);
     } catch (error) {
         res.status(422).json(error)
@@ -459,6 +501,19 @@ router.get("/getproduct/:id", async (req, res) => {
         res.status(422).json(error)
     }
 })
+
+router.delete("/deletebrand/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        console.log(id);
+        const deletebrand = await branddb.findByIdAndDelete({ _id: id });
+        console.log(deletebrand);
+        res.status(201).json(deletebrand);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
 router.delete("/deletecategoty/:id", async (req, res) => {
     try {
         const { id } = req.params
@@ -479,6 +534,21 @@ router.delete("/deleteproduct/:id", async (req, res) => {
         res.status(422).json(error);
     }
 })
+
+router.patch("/updatebrand/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const updatebrand = await branddb.findByIdAndUpdate(id, req.body, {
+            new: true
+        })
+        console.log("check :", updatebrand);
+        res.status(201).json(updatebrand)
+    } catch (error) {
+        res.status(422).json(error)
+    }
+})
+
 router.patch("/updatecategory/:id", async (req, res) => {
     try {
         const { id } = req.params

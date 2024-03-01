@@ -15,6 +15,8 @@ const Add = () => {
     const [actual_price, setActualPrice] = useState("")
     const [discount, setDiscount] = useState("")
     const [description, setDescription] = useState("")
+    const [product_brand, setProductBrand] = useState("")
+    const [product_brandError, setProductBrandError] = useState("")
     const [product_category, setProductCategory] = useState("63fb2a4951915d055dc7446d")
     const [product_categoryError, setProductCategoryError] = useState("")
     const [countInStock, setCountInStock] = useState("")
@@ -23,7 +25,25 @@ const Add = () => {
 
 
     const [list, setList] = useState([])
+    const [brandList, setBrandList] = useState([])
     const navigate = useNavigate();
+
+    const getBrandData = async () => {
+        const res = await fetch("/getbrand", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        console.log(res);
+        const brand_data = await res.json();
+        console.log(brand_data);
+        if (res.status == 422 || !brand_data) {
+            console.log("Error");
+        } else {
+            setBrandList(brand_data);
+        }
+    }
 
     const getCategoryData = async () => {
         const res = await fetch("/getcategory", {
@@ -109,6 +129,7 @@ const Add = () => {
     }
 
     useEffect(() => {
+        getBrandData()
         getCategoryData()
     }, [])
 
@@ -128,6 +149,22 @@ const Add = () => {
                             <Form.Label>Product Name</Form.Label>
                             <Form.Control type="text" class="form-control" id="exampleInputUsername1" value={product_name} onChange={(e) => setProductName(e.target.value)} placeholder="Enter Product Name" name='product_name' />
                         </Form.Group>
+                        <Form.Group className="mb-3" >
+                                <label for="exampleInputUsername1">Product Brand</label>
+                                <select value={product_brand} onChange={(e) => setProductBrand(e.target.value)} selected name='product_brand' class="form-control" style={{ marginTop: "0.5rem", width: "8rem" }} >
+                                    {
+                                        brandList.map((item, index) => {
+                                            return (
+                                                <>
+                                                    <option value={item._id} >{item.brandName}</option>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                    <div style={{ color: "red" }}>{product_categoryError}</div>
+                                </select>
+
+                            </Form.Group>
                         <div style={{ display: 'flex' }}>
                             <Form.Group className="mb-3" style={{ width: "10rem" }}>
                                 <Form.Label>Selling Price</Form.Label>
