@@ -46,9 +46,13 @@ const AdminHeader = () => {
         <Container>
           <Navbar.Brand style={{textDecoration:"none"}}><NavLink style={{color:"white"}} to={"/admin"}>Admin Dashboard</NavLink></Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link style={{color:"white"}} href="#home">Home</Nav.Link>
-            <Nav.Link style={{color:"white"}} href="#features">Features</Nav.Link>
-            <Nav.Link style={{color:"white"}} onClick={Logout}>Logout</Nav.Link>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/admin"}>Home</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/brand"}>Brands</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/category"}>Categories</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/product"}>Products</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/coupan"}>Coupon</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} to={"/orders"}>Orders</NavLink>
+            <NavLink style={{color:"white", margin: "10px"}} onClick={Logout}>Logout</NavLink>
           </Nav>
         </Container>
       </Navbar>

@@ -7,7 +7,10 @@ import { LoginContext } from './components/ContextProvider/Context';
 import ErrorPage from './Pages/ErrorPage';
 import Otp from './Pages/Otp';
 import Category from './Pages/Category/Home';
+import Brand from './Pages/Brand/Home';
+import AddBrand from './Pages/Brand/Add';
 import AddCategory from './Pages/Category/Add';
+import EditBrand from "./Pages/Brand/Edit"
 import EditCategory from "./Pages/Category/Edit"
 import Product from "./Pages/Product/Home"
 import AddProduct from "./Pages/Product/Add"
@@ -75,14 +78,18 @@ useEffect(()=>{
         <Route path="/admin" element={<AdminDash/>}></Route>
         <Route path="/shop" element={<Shop/>}></Route>
         <Route path="/user/otp" element={<Otp/>}></Route>
+        <Route path="/brand" element={<Brand />}></Route>
         <Route path="/category" element={<Category/>}></Route>
         <Route path="/product" element={<Product/>}></Route>
         <Route path="/coupan" element={<Coupan/>}></Route>
         <Route path="/category/add" element={<AddCategory/>}></Route>
+        <Route path="/brand/add" element={<AddBrand/>}></Route>
         <Route path="/product/add" element={<AddProduct/>}></Route>
         <Route path="/coupan/add" element={<AddCoupan/>}></Route>
+        <Route path="/editbrand/:id" element={<EditBrand/>}></Route>
         <Route path="/editcategory/:id" element={<EditCategory/>}></Route>
         <Route path="/editproduct/:id" element={<EditProduct/>}></Route>
+        <Route path="/aboutus" element={<AboutUs />}></Route>
 
         <Route path="/editcoupan/:id" element={<EditCoupan/>}></Route>
         <Route path="/productDetail/:id" element={<ProductsDetailDefault/>}></Route>

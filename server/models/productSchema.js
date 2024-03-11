@@ -7,6 +7,10 @@ const productSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    product_brand: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "brands"
+    },
     imgpath: {
         type: String,
         required: true

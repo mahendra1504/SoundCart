@@ -63,7 +63,7 @@ const Home = () => {
     <>
     <AdminHeader></AdminHeader>
     <ToastContainer/>
-    <button onClick={addproduct}>Add Product</button>
+    <button style={{borderRadius: "5", marginTop: "10", padding: "10", position: "absolute", right: "70px", width:"200", height: "120", border: "3 solid green"}} className='btn-success' onClick={addproduct}>Add Product</button>
     <input type="search" class="form-control" id="datatable-search-input" placeholder='Enter to search' onChange={(e)=>setSearch(e.target.value)} style={{marginBottom:"2rem",maxWidth:"30rem",marginTop:"1rem"}}/>
 
    <div className='flex' style={{display:'flex'}}>
@@ -129,7 +129,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-    <div style={{ width: "30rem" }}>
+    <div style={{ width: "93rem" }}>
 
 
 {
@@ -138,11 +138,12 @@ const Home = () => {
   </>:
   <>
     <Table striped bordered hover size="sm">
-  <thead>
+  <thead style={{textAlign: "center"}}>
     <tr>
       <th>#</th>
       <th>Product Image</th>
       <th>Product Name</th>
+      <th>Brand Name</th>
       <th>Price</th>
       <th>Category</th>
       <th>Status</th>
@@ -154,14 +155,15 @@ const Home = () => {
     {
       list.map((item, index) => {
         return (
-          <tr>
+          <tr style={{ textAlign: "center" }}>
             <td>{index + 1}</td>
             <td><img variant="top" style={{ width: "100px", textAlign: "center", margin: "auto", height: "100px" }} src={`/uploads/${item.imgpath}`} className='mt-2' /></td>
-            <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{item.product_name}</div></td>
-            <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{item.selling_price}<br></br><s>{item.actual_price}</s></div></td>
-            <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{item.product_category.catName}</div></td>
-            <td style={{ textAlign: "center" }}><div style={{ marginTop: "2rem" }}>{ JSON.stringify(item.isActive)==="false" ? "InActive" : "Active" }</div></td>
-            <td style={{textAlign:"center"}}>
+            <td><div style={{ marginTop: "2rem" }}>{item.product_name}</div></td>
+            <td><div style={{ marginTop: "2rem" }}>{item.product_brand?.brandName}</div></td>
+            <td><div style={{ marginTop: "2rem" }}>{item.selling_price}<br></br><s>{item.actual_price}</s></div></td>
+            <td><div style={{ marginTop: "2rem" }}>{item.product_category.catName}</div></td>
+            <td><div style={{ marginTop: "2rem" }}>{ JSON.stringify(item.isActive)==="false" ? "InActive" : "Active" }</div></td>
+            <td>
 
 
               <div style={{marginTop:"2rem"}}>

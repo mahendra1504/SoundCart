@@ -76,7 +76,7 @@ const Header = () => {
                         
                         <div className="header-logo">
                             <div className="logo">
-                                <a href="index.html"><img src="assets/images/logo/SoundCart.png" height={400} width={400} alt=""/></a>
+                                <a href="/"><img src="assets/images/logo/SoundCart.png" height={400} width={400} alt=""/></a>
                             </div>
                         </div>
                         
@@ -215,11 +215,6 @@ const Header = () => {
 
 
                                         </Menu>
-                            <li>
-                                <a href="#offcanvas-about" className="offacnvas offside-about offcanvas-toggle">
-                                    <i className="icon-menu"></i>
-                                </a>
-                            </li>
                         </ul>
                         
                     </div>
