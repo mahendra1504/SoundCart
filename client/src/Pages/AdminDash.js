@@ -13,7 +13,22 @@ const AdminDash = () => {
       <AdminHeader></AdminHeader> 
 
       <Container>
+
  <Row style={{marginTop:"10px"}}>
+
+ <Col sm={3}><Card style={{ width: '18rem',marginLeft:"2rem", height:"12rem" ,backgroundColor:"#475953"}}>
+      <Card.Body>
+        <Card.Title style={{color:"white"}}>Brands</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+        <Card.Text>
+          
+        </Card.Text>
+        
+        <NavLink style={{color:"white",fontStyle:"italic"}}  to={"/brand"} >Add Brands</NavLink>
+       
+      </Card.Body>
+    </Card></Col>
+
         <Col sm={3}><Card style={{ width: '18rem' , marginLeft:"2rem" ,height:"12rem" ,backgroundColor:"#475953"}}>
       <Card.Body>
         <Card.Title style={{color:"white"}}>Categorys</Card.Title>
@@ -42,33 +57,29 @@ const AdminDash = () => {
 
     <Col sm={3}><Card style={{ width: '18rem',marginLeft:"2rem",height:"12rem" ,backgroundColor:"#475953"}}>
       <Card.Body>
-        <Card.Title style={{color:"white"}}>Coupans</Card.Title>
+        <Card.Title style={{color:"white"}}>Coupons</Card.Title>
         <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
         <Card.Text>
           
         </Card.Text>
-        <NavLink style={{color:"white",fontStyle:"italic"}} to={"/coupan"}>Add Coupan</NavLink>
+        <NavLink style={{color:"white",fontStyle:"italic"}} to={"/coupan"}>Add Coupon</NavLink>
        
       </Card.Body>
     </Card></Col>
-
-    
-    <Col sm={3}><Card style={{ width: '18rem',marginLeft:"2rem",height:"12rem" ,backgroundColor:"#475953"}}>
-      <Card.Body>
-        <Card.Title style={{color:"white"}}>Orders</Card.Title>
-        <Card.Subtitle  className="mb-2 text-muted"></Card.Subtitle>
-        <Card.Text>
-          
-        </Card.Text>
-        <NavLink style={{color:"white",fontStyle:"italic"}}  to={"/orders"}>Orders</NavLink>
-       
-      </Card.Body>
-    </Card></Col>
-
-    
       </Row>
 
       <Row style={{marginTop:"10px"}}>
+        <Col sm={3}><Card style={{ width: '18rem',marginLeft:"2rem",height:"12rem" ,backgroundColor:"#475953"}}>
+        <Card.Body>
+          <Card.Title style={{color:"white"}}>Orders</Card.Title>
+          <Card.Subtitle  className="mb-2 text-muted"></Card.Subtitle>
+          <Card.Text>
+            
+          </Card.Text>
+          <NavLink style={{color:"white",fontStyle:"italic"}}  to={"/orders"}>Orders</NavLink>
+        
+        </Card.Body>
+      </Card></Col>    
       </Row> 
 
 
